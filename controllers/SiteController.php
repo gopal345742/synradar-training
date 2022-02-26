@@ -9,6 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+//mpdf using through action
+//use Mpdf\Mpdf;
+//use mPDF;
 
 class SiteController extends Controller
 {
@@ -61,6 +64,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        print_r(Yii::$app->params['senderName']); die;
         return $this->render('index');
     }
 
@@ -125,4 +129,39 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
+    //action for 
+    /*public function actionPdf()
+    {
+        $mpdf = new mPDF;
+        $mpdf->WriteHTML('<p>Hello World</p>');
+        $mpdf->Output();
+        exit;
+    }
+
+    //Mpdf examples
+    public function actionCreateMPDF()
+    {
+        $mpdf = new mPDF();
+        $mpdf->WriteHTML($this->renderPartial('mpdf'));
+        $mpdf->Output();
+        exit;
+        //return $this->renderPartial('mpdf');
+    }
+
+    public function actionSamplePdf()
+    {
+        $mpdf = new mPDF;
+        $mpdf->WriteHTML('Sample Text');
+        $mpdf->Output();
+        exit;
+    }
+
+    public function actionForceDownloadPdf()
+    {
+        $mpdf = new mPDF();
+        $mpdf->WriteHTML($this->renderPartial('mpdf'));
+        $mpdf->Output('MyPDF.pdf', 'D');
+        exit;
+    }*/
 }
