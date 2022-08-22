@@ -4,7 +4,7 @@ return [
     'class' => 'yii\db\Connection',
     'dsn' => 'mysql:host=localhost;dbname=synradar',
     'username' => 'root',
-    'password' => '',
+    'password' => 'Test@1234',
     'charset' => 'utf8',
 
     // Schema cache options (for production environment)
