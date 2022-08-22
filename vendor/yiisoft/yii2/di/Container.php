@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\di;
@@ -17,11 +17,11 @@ use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
 
 /**
- * Container implements a [dependency injection](http://en.wikipedia.org/wiki/Dependency_injection) container.
+ * Container implements a [dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) container.
  *
  * A dependency injection (DI) container is an object that knows how to instantiate and configure objects and
  * all their dependent objects. For more information about DI, please refer to
- * [Martin Fowler's article](http://martinfowler.com/articles/injection.html).
+ * [Martin Fowler's article](https://martinfowler.com/articles/injection.html).
  *
  * Container supports constructor injection as well as property injection.
  *
@@ -579,7 +579,7 @@ class Container extends Component
     /**
      * Resolves dependencies by replacing them with the actual object instances.
      * @param array $dependencies the dependencies
-     * @param ReflectionClass $reflection the class reflection associated with the dependencies
+     * @param ReflectionClass|null $reflection the class reflection associated with the dependencies
      * @return array the resolved dependencies
      * @throws InvalidConfigException if a dependency cannot be resolved or if a dependency cannot be fulfilled.
      */
@@ -665,7 +665,19 @@ class Container extends Component
 
             if (PHP_VERSION_ID >= 80000) {
                 $class = $param->getType();
-                $isClass = $class !== null && !$param->getType()->isBuiltin();
+                if ($class instanceof \ReflectionUnionType || (PHP_VERSION_ID >= 80100 && $class instanceof \ReflectionIntersectionType)) {
+                    $isClass = false;
+                    foreach ($class->getTypes() as $type) {
+                        if (!$type->isBuiltin()) {
+                            $class = $type;
+                            $isClass = true;
+                            break;
+                        }
+                    }
+                } else {
+                    $isClass = $class !== null && !$class->isBuiltin();
+                }
+
             } else {
                 $class = $param->getClass();
                 $isClass = $class !== null;

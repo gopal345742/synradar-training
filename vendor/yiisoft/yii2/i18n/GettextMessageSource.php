@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\i18n;
@@ -131,7 +131,7 @@ class GettextMessageSource extends MessageSource
     protected function getMessageFilePath($language)
     {
         $language = (string) $language;
-        if ($language !== '' && !preg_match('/^[a-z_-]+$/i', $language)) {
+        if ($language !== '' && !preg_match('/^[a-z0-9_-]+$/i', $language)) {
             throw new InvalidArgumentException(sprintf('Invalid language code: "%s".', $language));
         }
         $messageFile = Yii::getAlias($this->basePath) . '/' . $language . '/' . $this->catalog;

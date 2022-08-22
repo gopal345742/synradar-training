@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\db;
@@ -28,7 +28,7 @@ use yii\base\InvalidConfigException;
 class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, \IteratorAggregate
 {
     /**
-     * @var null|string the type of the array elements. Defaults to `null` which means the type is
+     * @var string|null the type of the array elements. Defaults to `null` which means the type is
      * not explicitly specified.
      *
      * Note that in case when type is not specified explicitly and DBMS can not guess it from the context,
@@ -68,7 +68,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getType()
     {
@@ -104,6 +104,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
      * The return value will be casted to boolean if non-boolean was returned.
      * @since 2.0.14
      */
+    #[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return isset($this->value[$offset]);
@@ -119,6 +120,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
      * @return mixed Can return all value types.
      * @since 2.0.14
      */
+    #[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->value[$offset];
@@ -137,6 +139,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
      * @return void
      * @since 2.0.14
      */
+    #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
     {
         $this->value[$offset] = $value;
@@ -152,6 +155,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
      * @return void
      * @since 2.0.14
      */
+    #[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         unset($this->value[$offset]);
@@ -167,6 +171,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
      * The return value is cast to an integer.
      * @since 2.0.14
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return count($this->value);
@@ -181,6 +186,7 @@ class ArrayExpression implements ExpressionInterface, \ArrayAccess, \Countable, 
      * @since 2.0.14.1
      * @throws InvalidConfigException when ArrayExpression contains QueryInterface object
      */
+    #[\ReturnTypeWillChange]
     public function getIterator()
     {
         $value = $this->getValue();

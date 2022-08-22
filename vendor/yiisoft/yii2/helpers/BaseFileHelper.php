@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\helpers;
@@ -161,6 +161,7 @@ class BaseFileHelper
 
             throw new InvalidConfigException('The fileinfo PHP extension is not installed.');
         }
+
         $info = finfo_open(FILEINFO_MIME_TYPE, $magicFile);
 
         if ($info) {
@@ -220,7 +221,7 @@ class BaseFileHelper
 
     /**
      * Loads MIME types from the specified file.
-     * @param string $magicFile the path (or alias) of the file that contains all available MIME type information.
+     * @param string|null $magicFile the path (or alias) of the file that contains all available MIME type information.
      * If this is not set, the file specified by [[mimeMagicFile]] will be used.
      * @return array the mapping from file extensions to MIME types
      */
@@ -241,7 +242,7 @@ class BaseFileHelper
 
     /**
      * Loads MIME aliases from the specified file.
-     * @param string $aliasesFile the path (or alias) of the file that contains MIME type aliases.
+     * @param string|null $aliasesFile the path (or alias) of the file that contains MIME type aliases.
      * If this is not set, the file specified by [[mimeAliasesFile]] will be used.
      * @return array the mapping from file extensions to MIME types
      * @since 2.0.14
@@ -900,8 +901,8 @@ class BaseFileHelper
      */
     public static function changeOwnership($path, $ownership, $mode = null)
     {
-        if (!file_exists($path)) {
-            throw new InvalidArgumentException('Unable to change ownerhip, "' . $path . '" is not a file or directory.');
+        if (!file_exists((string)$path)) {
+            throw new InvalidArgumentException('Unable to change ownership, "' . $path . '" is not a file or directory.');
         }
 
         if (empty($ownership) && $ownership !== 0 && $mode === null) {

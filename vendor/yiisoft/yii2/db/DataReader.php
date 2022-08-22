@@ -1,8 +1,8 @@
 <?php
 /**
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 namespace yii\db;
@@ -79,7 +79,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * in the result set. If using the column name, be aware that the name
      * should match the case of the column, as returned by the driver.
      * @param mixed $value Name of the PHP variable to which the column will be bound.
-     * @param int $dataType Data type of the parameter
+     * @param int|null $dataType Data type of the parameter
      * @see https://www.php.net/manual/en/function.PDOStatement-bindColumn.php
      */
     public function bindColumn($column, &$value, $dataType = null)
@@ -196,6 +196,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * In this case, use "SELECT COUNT(*) FROM tableName" to obtain the number of rows.
      * @return int number of rows contained in the result.
      */
+    #[\ReturnTypeWillChange]
     public function count()
     {
         return $this->getRowCount();
@@ -216,6 +217,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * This method is required by the interface [[\Iterator]].
      * @throws InvalidCallException if this method is invoked twice
      */
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         if ($this->_index < 0) {
@@ -231,6 +233,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * This method is required by the interface [[\Iterator]].
      * @return int the index of the current row.
      */
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->_index;
@@ -241,6 +244,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * This method is required by the interface [[\Iterator]].
      * @return mixed the current row.
      */
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->_row;
@@ -250,6 +254,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * Moves the internal pointer to the next row.
      * This method is required by the interface [[\Iterator]].
      */
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->_row = $this->_statement->fetch();
@@ -261,6 +266,7 @@ class DataReader extends \yii\base\BaseObject implements \Iterator, \Countable
      * This method is required by the interface [[\Iterator]].
      * @return bool whether there is a row of data at current position.
      */
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->_row !== false;
