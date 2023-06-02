@@ -102,7 +102,7 @@ INSERT INTO `employee` (`id`, `emp_name`, `emp_details`, `fk_dept_id`) VALUES
 CREATE TABLE `project` (
   `id` int(11) NOT NULL,
   `pro_name` varchar(100) NOT NULL,
-  `pro_type` enum('One Time','Monthly') DEFAULT 'One Time'
+  `pro_type` enum('One Time','Monthly') NOT NULL DEFAULT 'One Time'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --

@@ -14,7 +14,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'pro_name')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'pro_type')->dropDownList([ 'One Time' => 'One Time', 'Monthly' => 'Monthly', ], ['prompt' => 'Type of Project']) ?>
+    <?php //echo \app\components\GHtml::enumDropDownList($model, 'pro_type', ['prompt' => 'Type of Project']); ?>
+    <?php echo $form->field($model, 'pro_type')->dropDownList(\app\components\GHtml::enumItem($model, 'pro_type'), ['prompt' => 'Type of Project']); ?>
+    <?php //echo $form->field($model, 'pro_type')->dropDownList([ 'One Time' => 'One Time', 'Monthly' => 'Monthly', ], ['prompt' => 'Type of Project']) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

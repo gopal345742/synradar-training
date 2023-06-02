@@ -30,8 +30,8 @@ class Project extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['pro_name','pro_type'], 'required'],
-            [['pro_type'], 'string'],
+            [['pro_name', 'pro_type'], 'required'],
+            [['pro_type'], 'in', 'range' => ['One Time', 'Monthly']],
             [['pro_name'], 'string', 'max' => 100],
         ];
     }
